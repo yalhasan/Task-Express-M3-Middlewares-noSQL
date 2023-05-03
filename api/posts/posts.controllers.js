@@ -1,4 +1,4 @@
-const Post = require('../../models/Post');
+const Post = require("../../models/Post");
 
 exports.postsCreate = async (req, res) => {
   try {
@@ -14,10 +14,10 @@ exports.postsDelete = async (req, res) => {
   try {
     const foundPost = await Post.findById(+postId);
     if (foundPost) {
-      await foundPost.remove();
+      await foundPost.deleteOne();
       res.status(204).end();
     } else {
-      res.status(404).json({ message: 'post not found' });
+      res.status(404).json({ message: "post not found" });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -32,7 +32,7 @@ exports.postsUpdate = async (req, res) => {
       await foundPost.findByIdAndUpdate(postId, req.body);
       res.status(204).end();
     } else {
-      res.status(404).json({ message: 'post not found' });
+      res.status(404).json({ message: "post not found" });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
