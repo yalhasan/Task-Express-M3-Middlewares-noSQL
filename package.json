@@ -1,7 +1,7 @@
 {
   "name": "task",
   "version": "1.0.0",
-  "description": "In this task, you will create a banking API with the basic `CRUD` operations.",
+  "description": "In this task, you will create create middleware for the post API",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JoinCODED/Task-Express-M1-Intro-Crud-Banks.git"
+    "url": "git+https://github.com/JoinCODED/Task-Express-M3-Middlewares-noSQL.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JoinCODED/Task-Express-M1-Intro-Crud-Banks/issues"
+    "url": "https://github.com/JoinCODED/Task-Express-M3-Middlewares-noSQL/issues"
   },
-  "homepage": "https://github.com/JoinCODED/Task-Express-M1-Intro-Crud-Banks#readme",
+  "homepage": "https://github.com/JoinCODED/Task-Express-M3-Middlewares-noSQL#readme",
   "dependencies": {
     "express": "^4.17.2",
     "mongoose": "^7.1.0"
