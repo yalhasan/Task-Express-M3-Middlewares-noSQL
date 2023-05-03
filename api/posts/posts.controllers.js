@@ -12,7 +12,7 @@ exports.postsCreate = async (req, res) => {
 exports.postsDelete = async (req, res) => {
   const { postId } = req.params;
   try {
-    const foundPost = await Post.findById(+postId);
+    const foundPost = await Post.findById(postId);
     if (foundPost) {
       await foundPost.deleteOne();
       res.status(204).end();
