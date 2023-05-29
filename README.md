@@ -48,6 +48,8 @@ In `routes.js`, create a `param` middleware that handles fetching a post and sav
 2. Access the post from the request object.
 3. Test your routes to make sure they're working properly.
 
+## Bonus
+
 ### 🍋 Slug Middleware
 
 Create a custom middleware when creating a blog that generates a slug for the blog title and adds it to the request.
