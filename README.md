@@ -92,7 +92,7 @@ Set up the upload middleware using multer.
 $ npm install multer
 ```
 
-2. In your `middleware` folder (create one if you don't have it), create a file called `multer.js`.
+2. Create a directory called `middleware` in your root of your application directory, then within the `middleware` folder, create a file called `multer.js`.
 
 3. In this file `multer.js`, copy paste the following code:
 
@@ -129,6 +129,7 @@ const upload = require("../../middleware/multer");
 2. If a file is uploaded, save the path in the body as `req.body.image` before the post instance is created.
 3. In the `PostSchema`, add a new property called image of type `String`.
 4. Test your post create api using postman.
+5. Try to access the image from the post through the browser.
 
 ## Bonus
 
