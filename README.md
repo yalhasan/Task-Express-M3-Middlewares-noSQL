@@ -48,6 +48,88 @@ In `routes.js`, create a `param` middleware that handles fetching a post and sav
 2. Access the post from the request object.
 3. Test your routes to make sure they're working properly.
 
+## More Middlewares
+
+### Morgan Setup
+
+1. Install [multer](https://www.npmjs.com/package/morgan)
+
+```shell
+$ npm install morgan
+```
+
+2. In `app.js`, create a variable called morgan.
+3. Configure your express application to use morgan using the `dev` format.
+
+### Cors
+
+1. Install [cors](https://www.npmjs.com/package/cors)
+
+```shell
+$ npm install cors
+```
+
+2. In `app.js`, create a variable called cors.
+3. Enable your app to use the cors middleware.
+
+### Setup Media Folder
+
+Create a route for the media files.
+
+1. Create a folder called `media` for your images.
+2. In `app.js`, create a route with the path `/media`.
+3. Join `media` to the directory path `__dirname` using `join` and pass it to `express.static`.
+4. Test your route by putting any image in the `media` folder, then in your browser go to `localhost:8000/media/<image_name>`.
+5. Add `media` to your `.gitignore` file.
+
+### Setup Upload Middleware
+
+Set up the upload middleware using multer.
+
+1. Install multer
+
+```shell
+$ npm install multer
+```
+
+2. In your `middleware` folder (create one if you don't have it), create a file called `multer.js`.
+
+3. In this file `multer.js`, copy paste the following code:
+
+```js
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: "./media",
+  filename: (req, file, cb) => {
+    cb(null, `${+new Date()}${file.originalname}`);
+  },
+});
+
+const upload = multer({
+  storage,
+});
+
+module.exports = upload;
+```
+
+4. In `posts.routes.js`, require the newly created `multer` middleware.
+
+```js
+const upload = require("../../middleware/multer");
+```
+
+5. Include the `upload` middleware before the `postsCreate` controller route.
+
+6. Specify that `single` images are uploaded only and the field name is `image`.
+
+### Uploading Images
+
+1. In `postsCreate` controller method in the `posts.controllers.js`, check if an image was uploaded by checking if `req.file` exists.
+2. If a file is uploaded, save the path in the body as `req.body.image` before the post instance is created.
+3. In the `PostSchema`, add a new property called image of type `String`.
+4. Test your post create api using postman.
+
 ## Bonus
 
 ### 🍋 Slug Middleware
