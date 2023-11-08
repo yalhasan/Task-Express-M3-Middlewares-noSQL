@@ -1,16 +1,18 @@
 const Post = require("../../models/Post");
 
-exports.postsCreate = async (req, res) => {
+exports.postsCreate = async (req, res, next) => {
   try {
-    const newPost = await Post.create(req.body);
+    if (req.file) {
+      req.body.image = req.file.path;
+    }
+    const newPost = await Post.createe(req.body);
     res.status(201).json(newPost);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-exports.postsDelete = async (req, res) => {
-  const { postId } = req.params;
+exports.postsDelete = async (req, res, next) => {
   try {
     const foundPost = await Post.findById(postId);
     if (foundPost) {
@@ -20,12 +22,11 @@ exports.postsDelete = async (req, res) => {
       res.status(404).json({ message: "post not found" });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-exports.postsUpdate = async (req, res) => {
-  const { postId } = req.params;
+exports.postsUpdate = async (req, res, next) => {
   try {
     const foundPost = await Post.findById(postId);
     if (foundPost) {
@@ -35,15 +36,23 @@ exports.postsUpdate = async (req, res) => {
       res.status(404).json({ message: "post not found" });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-exports.postsGet = async (req, res) => {
+exports.postsGet = async (req, res, next) => {
   try {
     const posts = await Post.find();
     res.json(posts);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
+  }
+};
+
+exports.fetchPost = (postId, next) => {
+  try {
+    Post.findById(postId);
+  } catch (error) {
+    next(error);
   }
 };
